@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <h2>Admin: Manage Products</h2>
+    <hr>
+    {% for product in products %}
+        <div>
+            <strong>{{ product.name }}</strong> - {{ product.price }}$
+            <p>{{ product.description }}</p>
+            <a href="{% url 'delete_product' product.id %}"
+               style="color:red"
+               onclick="return confirm('Are you sure?');">Delete</a>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock %}

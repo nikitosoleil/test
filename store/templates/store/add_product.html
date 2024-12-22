@@ -1,0 +1,17 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <h2>Add New Product</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Name:</label>
+        <input type="text" name="name">
+        <br>
+        <label>Price:</label>
+        <input type="number" step="0.01" name="price">
+        <br>
+        <label>Description:</label>
+        <textarea name="description"></textarea>
+        <br>
+        <button type="submit">Create</button>
+    </form>
+{% endblock %}

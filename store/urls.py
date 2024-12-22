@@ -1,8 +1,9 @@
 from django.shortcuts import redirect
 from django.urls import path
 
-from .views import (add_to_cart, admin_orders, cart_checkout, cart_detail, catalog, create_order, my_orders,
-                    product_detail, register, remove_from_cart, update_order, user_login, user_logout)
+from .views import (add_product, add_to_cart, admin_orders, admin_products, cart_checkout, cart_detail, catalog,
+                    create_order, delete_product, my_orders, product_detail, register, remove_from_cart, update_order,
+                    user_login, user_logout)
 
 urlpatterns = [
     path('', lambda request: redirect('login')),
@@ -19,4 +20,7 @@ urlpatterns = [
     path('cart/add/<int:pk>/', add_to_cart, name='add_to_cart'),
     path('cart/remove/<int:item_id>/', remove_from_cart, name='remove_from_cart'),
     path('cart/checkout/', cart_checkout, name='cart_checkout'),
+    path('admin_products/', admin_products, name='admin_products'),
+    path('add_product/', add_product, name='add_product'),
+    path('delete_product/<int:product_id>/', delete_product, name='delete_product'),
 ]
