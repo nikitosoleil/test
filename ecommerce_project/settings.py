@@ -2,7 +2,7 @@ from pathlib import Path
 
 BASE_DIR=Path(__file__).resolve().parent.parent
 SECRET_KEY='secret'
-DEBUG=False
+DEBUG=True
 ALLOWED_HOSTS=['18.197.101.231']
 INSTALLED_APPS=[
     'django.contrib.admin',
