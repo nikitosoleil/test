@@ -1,0 +1,10 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>Create Order</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label>Quantity</label>
+    <input type="number" name="qty" value="1">
+    <button type="submit">Order</button>
+</form>
+{% endblock %}

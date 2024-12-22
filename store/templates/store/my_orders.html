@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+{% block content %}
+<h2>My Orders</h2>
+{% for order in orders %}
+<div>
+    <p>Order #{{ order.id }} | Status: {{ order.status }}</p>
+    <ul>
+        {% for item in order.items.all %}
+        <li>{{ item.product.name }} x {{ item.quantity }} ({{ item.price }}$)</li>
+        {% endfor %}
+    </ul>
+</div>
+<hr>
+{% endfor %}
+{% endblock %}
