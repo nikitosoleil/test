@@ -2,11 +2,13 @@ body {
     margin: 0;
     font-family: sans-serif;
     background: #f3f3f3;
+    margin-left: 2rem;
 }
 
 nav {
     background: #333;
     padding: 0.8rem;
+    margin-left: -2rem;
 }
 
 nav a {
@@ -15,14 +17,11 @@ nav a {
     margin-right: 1rem;
 }
 
-nav a:hover {
-    text-decoration: underline;
-}
-
 hr {
     margin: 0;
     border: none;
     border-top: 2px solid #ccc;
+    margin-left: -2rem;
 }
 
 h2, h3 {

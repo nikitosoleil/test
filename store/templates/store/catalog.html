@@ -1,12 +1,12 @@
 {% extends 'store/base.html' %}
 {% block content %}
-<h2>Catalog</h2>
-{% for product in products %}
-<div>
-    <h3>{{ product.name }} - {{ product.price }}$</h3>
-    <p>{{ product.description }}</p>
-    <a href="{% url 'product_detail' product.id %}">View</a>
-</div>
-<hr>
-{% endfor %}
+    <h2>Catalog</h2>
+    {% for product in products %}
+        <div>
+            <h3>{{ product.name }} - {{ product.price }}$</h3>
+            <p>{{ product.description }}</p>
+            <a href="{% url 'product_detail' product.id %}">View</a>
+        </div>
+        <hr>
+    {% endfor %}
 {% endblock %}

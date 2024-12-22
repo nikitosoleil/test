@@ -1,0 +1,15 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <h2>Your Cart</h2>
+    {% if cart.items.count == 0 %}
+        <p>Your cart is empty.</p>
+    {% else %}
+        {% for item in cart.items.all %}
+            <div>
+                <p>{{ item.product.name }} x {{ item.quantity }}</p>
+                <button onclick="location.href='{% url 'remove_from_cart' item.id %}'">Remove</button>
+            </div>
+        {% endfor %}
+        <button onclick="location.href='{% url 'cart_checkout' %}'">Checkout</button>
+    {% endif %}
+{% endblock %}

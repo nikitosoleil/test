@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import FoodProduct, Order, OrderItem
+from .models import FoodProduct, Order, OrderItem, Cart, CartItem
 
 def register(request):
     if request.method=='POST':
@@ -57,8 +57,8 @@ def is_admin(user):
 @login_required
 @user_passes_test(is_admin)
 def admin_orders(request):
-    orders = Order.objects.all()
-    return render(request,'store/admin_orders.html',{'orders': orders})
+    orders=Order.objects.all()
+    return render(request,'store/admin_orders.html',{'orders':orders})
 
 @login_required
 @user_passes_test(is_admin)
@@ -69,3 +69,44 @@ def update_order(request,order_id):
         o.save()
         return redirect('admin_orders')
     return render(request,'store/update_order.html',{'order':o})
+
+@login_required
+def add_to_cart(request,pk):
+    product=get_object_or_404(FoodProduct,pk=pk)
+    cart,created=Cart.objects.get_or_create(user=request.user)
+    if request.method=='POST':
+        qty=int(request.POST.get('qty',1))
+        item,created_item=CartItem.objects.get_or_create(cart=cart,product=product)
+        if not created_item:
+            item.quantity+=qty
+        else:
+            item.quantity=qty
+        item.save()
+        return redirect('cart_detail')
+    return redirect('catalog')
+
+@login_required
+def cart_detail(request):
+    cart,created=Cart.objects.get_or_create(user=request.user)
+    return render(request,'store/cart.html',{'cart':cart})
+
+@login_required
+def remove_from_cart(request,item_id):
+    item=get_object_or_404(CartItem,pk=item_id,cart__user=request.user)
+    item.delete()
+    return redirect('cart_detail')
+
+@login_required
+def cart_checkout(request):
+    cart,created=Cart.objects.get_or_create(user=request.user)
+    if cart.items.exists():
+        o=Order.objects.create(user=request.user)
+        for ci in cart.items.all():
+            OrderItem.objects.create(
+                order=o,
+                product=ci.product,
+                quantity=ci.quantity,
+                price=ci.product.price*ci.quantity
+            )
+        cart.items.all().delete()
+    return redirect('my_orders')
