@@ -1,16 +1,16 @@
 {% extends 'store/base.html' %}
 {% block content %}
-<h2>Pending Orders</h2>
-{% for order in pending %}
-<div>
-    <p>Order #{{ order.id }} (User: {{ order.user.username }}) Status: {{ order.status }}</p>
-    <ul>
-        {% for item in order.items.all %}
-        <li>{{ item.product.name }} x {{ item.quantity }} ({{ item.price }}$)</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'update_order' order.id %}">Update</a>
-    <hr>
-</div>
-{% endfor %}
+    <h2>Admin Orders</h2>
+    {% for order in orders %}
+        <div>
+            <p>Order #{{ order.id }} (User: {{ order.user.username }}) | Status: {{ order.status }}</p>
+            <ul>
+                {% for item in order.items.all %}
+                    <li>{{ item.product.name }} x {{ item.quantity }} ({{ item.price }}$)</li>
+                {% endfor %}
+            </ul>
+            <a href="{% url 'update_order' order.id %}">Update</a>
+            <hr>
+        </div>
+    {% endfor %}
 {% endblock %}

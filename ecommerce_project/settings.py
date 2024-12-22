@@ -3,7 +3,8 @@ from pathlib import Path
 BASE_DIR=Path(__file__).resolve().parent.parent
 SECRET_KEY='secret'
 DEBUG=True
-ALLOWED_HOSTS=['18.197.101.231']
+ALLOWED_HOSTS=['127.0.0.1', 
+               '18.197.101.231']
 INSTALLED_APPS=[
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,4 +52,5 @@ USE_I18N=True
 USE_L10N=True
 USE_TZ=True
 STATIC_URL='/static/'
+STATIC_ROOT='./static/'
 DEFAULT_AUTO_FIELD='django.db.models.BigAutoField'

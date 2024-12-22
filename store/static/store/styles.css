@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f3f3f3;
+}
+
+nav {
+    background: #333;
+    padding: 0.8rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+hr {
+    margin: 0;
+    border: none;
+    border-top: 2px solid #ccc;
+}
+
+h2, h3 {
+    font-weight: 600;
+    color: #333;
+}
+
+form {
+    margin: 1rem 0;
+}
+
+label {
+    font-weight: 600;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    padding: 0.4rem;
+    margin: 0.2rem 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    display: block;
+}
+
+button {
+    background: #4285f4;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #3367d6;
+}
+
+div {
+    background: #fff;
+    margin: 0.5rem 0;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}

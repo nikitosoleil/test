@@ -57,8 +57,8 @@ def is_admin(user):
 @login_required
 @user_passes_test(is_admin)
 def admin_orders(request):
-    pending=Order.objects.filter(status='pending')
-    return render(request,'store/admin_orders.html',{'pending':pending})
+    orders = Order.objects.all()
+    return render(request,'store/admin_orders.html',{'orders': orders})
 
 @login_required
 @user_passes_test(is_admin)
